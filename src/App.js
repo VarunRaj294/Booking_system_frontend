@@ -1,6 +1,9 @@
 import "./App.css";
 import SideBar from "./components/Sidebar/SideBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React from 'react';
+import ChatWidget from './components/ChatWidget';
+import RecommendationSection from './components/RecommendationSection';
 
 import Dashboard from "./pages/ErrorPage";
 import Users from "./pages/Users";
@@ -44,6 +47,9 @@ import AddPropertyFacilityForm from "./pages/AddPropertyFacilityForm";
 import AddLocationForm from "./locations/AddLocationForm";
 import ViewAllLocations from "./locations/ViewAllLocations";
 import UpdateLocationForm from "./locations/UpdateLocationForm";
+//import DatasetUploadPage from './pages/DatasetUploadPage';
+//import DatasetPage from './pages/DatasetPage';
+//import PGListingsPage from './pages/PGListingsPage';
 
 function App() {
   return (
@@ -52,6 +58,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/recommendations" element={<RecommendationSection />} />
           <Route path="/users" element={<Users />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/contact-us" element={<ContactUsPage />} />
@@ -164,10 +171,12 @@ function App() {
             path="/admin/location/update"
             element={<UpdateLocationForm />}
           />
+         
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </SideBar>
+      <ChatWidget />
     </Router>
   );
 }

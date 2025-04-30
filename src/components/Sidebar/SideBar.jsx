@@ -18,6 +18,9 @@ import {
   FaCalendarTimes,
   FaMapMarkerAlt,
   FaMap,
+  FaStar,
+  FaDatabase,
+  FaBuilding,
 } from "react-icons/fa";
 import {
   MdApartment,
@@ -34,6 +37,11 @@ const routes = [
     path: "/",
     name: "Home",
     icon: <FaHome />,
+  },
+  {
+    path: "/recommendations",
+    name: "Recommendations",
+    icon: <FaStar />,
   },
   {
     path: "/about-us",
