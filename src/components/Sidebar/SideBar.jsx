@@ -136,7 +136,7 @@ const SideBar = ({ children }) => {
           },
           {
             path: "/owner/approved/property",
-            name: "Approved Property",
+            name: "Approved Propertyy",
             icon: <FaCheckCircle />,
           },
           {
