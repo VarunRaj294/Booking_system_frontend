@@ -1,7 +1,11 @@
+/* Import Lexend Deca font */
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Lexend Deca', sans-serif;
 }
 /* Ensure all elements are well spaced and sized */
 .main-container {
@@ -26,6 +30,7 @@ main.sidebar-open {
   font-size: 3rem;
   display: grid;
   place-items: center;
+  font-weight: 600;
 }
 
 /* Sidebar */
@@ -38,6 +43,7 @@ main.sidebar-open {
   top: 0;
   overflow-y: hidden;
   transition: width 0.1s ease; /* Smooth transition for width changes */
+  font-weight: 500;
 }
 
 .top_section {
@@ -50,6 +56,7 @@ main.sidebar-open {
 .logo {
   font-size: 18px;
   line-height: 0;
+  font-weight: 700;
 }
 
 .bars {
@@ -105,6 +112,7 @@ main.sidebar-open {
 .link_text {
   white-space: nowrap;
   font-size: 15px;
+  font-weight: 500;
 }
 
 /* Sidebar Menu */
@@ -115,6 +123,7 @@ main.sidebar-open {
   border-right: 4px solid transparent;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   justify-content: space-between;
+  font-weight: 500;
 }
 
 .menu_item {
@@ -150,6 +159,7 @@ main.sidebar-open {
 
   .logo {
     font-size: 24px;
+    font-weight: 700;
   }
 
   .bars {
@@ -175,6 +185,7 @@ main.sidebar-open {
 
   .link_text {
     font-size: 14px;
+    font-weight: 500;
   }
 
   .menu_container .link {
