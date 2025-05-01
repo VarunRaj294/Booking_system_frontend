@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import dollor from "../images/dollor_logo.png";
-import location from "../images/location.png";
+import { FaMapMarkerAlt, FaStar } from "react-icons/fa";
+import "./PropertyCard.css";
 
 const PropertyCard = (property) => {
   const descriptionToShow = (description, maxLength) => {
@@ -16,41 +16,33 @@ const PropertyCard = (property) => {
     <div className="col">
       <Link
         to={`/property/${property.item.id}/detail`}
-        class="card property-card rounded-card h-100 shadow-lg"
-        style={{ textDecoration: "none" }}
+        className="property-card-link"
       >
-        <div style={{ position: "relative", maxWidth: "100%" }}>
-          <img
-            src={"http://localhost:8080/api/property/" + property.item.image}
-            className="card-img-top rounded d-block"
-            alt="img"
-            style={{
-              maxHeight: "270px",
-              maxWidth: "100%",
-              width: "auto",
-            }}
-          />
-        </div>
-
-        <div class="card-body text-color">
-          <b className="text-color-third">
+        <div className="property-card">
+          <div className="property-image-container">
             <img
-              src={location}
-              height="30"
-              width="auto"
-              class="d-inline-block align-top me-2"
-              alt=""
+              src={"http://localhost:8080/api/property/" + property.item.image}
+              className="property-image"
+              alt={property.item.name}
             />
-            {property.item.location.name}
-          </b>
-          <h5 className="card-title text-color mt-2">
-            <div>
-              <b>{property.item.name}</b>
+            <div className="property-rating">
+              <FaStar className="star-icon" />
+              <span>4.5</span>
             </div>
-          </h5>
-          <p className="card-text">
-            {descriptionToShow(property.item.description, 60)}
-          </p>
+          </div>
+
+          <div className="property-content">
+            <div className="property-location">
+              <FaMapMarkerAlt className="location-icon" />
+              <span>{property.item.location.name}</span>
+            </div>
+
+            <h3 className="property-title">{property.item.name}</h3>
+            
+            <p className="property-description">
+              {descriptionToShow(property.item.description, 100)}
+            </p>
+          </div>
         </div>
       </Link>
     </div>

@@ -16,6 +16,21 @@ const UserLoginForm = () => {
     setLoginRequest({ ...loginRequest, [e.target.name]: e.target.value });
   };
 
+  const toastConfig = {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    style: {
+      fontSize: "14px",
+      fontFamily: "'Lexend Deca', sans-serif",
+    },
+  };
+
   const loginAction = (e) => {
     fetch("http://localhost:8080/api/user/login", {
       method: "POST",
@@ -55,37 +70,22 @@ const UserLoginForm = () => {
 
             if (res.jwtToken !== null) {
               toast.success(res.responseMessage, {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                ...toastConfig,
+                icon: "🎉",
               });
               setTimeout(() => {
                 window.location.href = "/home";
-              }, 1000); // Redirect after 3 seconds
+              }, 1000);
             } else {
               toast.error(res.responseMessage, {
-                position: "top-center",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                ...toastConfig,
+                icon: "❌",
               });
             }
           } else {
             toast.error(res.responseMessage, {
-              position: "top-center",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
+              ...toastConfig,
+              icon: "❌",
             });
           }
         });
@@ -93,13 +93,8 @@ const UserLoginForm = () => {
       .catch((error) => {
         console.error(error);
         toast.error("It seems server is down", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+          ...toastConfig,
+          icon: "⚠️",
         });
       });
     e.preventDefault();
@@ -122,7 +117,7 @@ const UserLoginForm = () => {
             <div className="card-body mt-3">
               <form>
                 <div className="mb-3 text-color">
-                  <label for="emailId" class="form-label">
+                  <label htmlFor="emailId" className="form-label">
                     <b>Email Id</b>
                   </label>
                   <input
@@ -135,7 +130,7 @@ const UserLoginForm = () => {
                   />
                 </div>
                 <div className="mb-3 text-color">
-                  <label for="password" className="form-label">
+                  <label htmlFor="password" className="form-label">
                     <b>Password</b>
                   </label>
                   <input
@@ -156,7 +151,19 @@ const UserLoginForm = () => {
                   >
                     Login
                   </button>
-                  <ToastContainer />
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                    style={{ fontSize: "14px" }}
+                  />
                 </div>
               </form>
             </div>

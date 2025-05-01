@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './RecommendationSection.css';
 import axios from 'axios';
 import PropertyCard from '../pages/PropertyCard';
+import { FaSearch, FaFilter } from 'react-icons/fa';
 
 const RecommendationSection = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -10,6 +11,7 @@ const RecommendationSection = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     // Fetch locations from the admin's database
@@ -64,79 +66,91 @@ const RecommendationSection = () => {
   return (
     <section className="recommendation-section">
       <div className="section-header">
-        <h2>Recommended Accommodations</h2>
-        <p>Discover your perfect stay with our curated selection</p>
+        <div className="header-content">
+          <h2>Recommended Accommodations</h2>
+          <p>Discover your perfect stay with our curated selection</p>
+        </div>
+        <button 
+          className="filter-toggle-btn"
+          onClick={() => setShowFilters(!showFilters)}
+        >
+          <FaFilter /> {showFilters ? 'Hide Filters' : 'Show Filters'}
+        </button>
       </div>
 
-      <div className="filters">
-        <div className="filter-group">
-          <label htmlFor="category">Type:</label>
-          <select
-            id="category"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <option value="all">All Types</option>
-            {types.map(type => (
-              <option key={type} value={type.toLowerCase()}>{type}</option>
-            ))}
-          </select>
-        </div>
+      <div className={`filters ${showFilters ? 'show' : ''}`}>
+        <div className="filters-container">
+          <div className="filter-group">
+            <label htmlFor="category">
+              <FaSearch className="filter-icon" />
+              Type
+            </label>
+            <select
+              id="category"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="filter-select"
+            >
+              <option value="all">All Types</option>
+              {types.map(type => (
+                <option key={type} value={type.toLowerCase()}>{type}</option>
+              ))}
+            </select>
+          </div>
 
-        <div className="filter-group">
-          <label htmlFor="location">Location:</label>
-          <select
-            id="location"
-            value={selectedLocation}
-            onChange={(e) => setSelectedLocation(e.target.value)}
-            disabled={loading}
-          >
-            <option value="all">All Locations</option>
-            {loading ? (
-              <option value="">Loading locations...</option>
-            ) : error ? (
-              <option value="">Error loading locations</option>
-            ) : (
-              locations.map(location => (
-                <option key={location.id} value={location.name.toLowerCase()}>{location.name}</option>
-              ))
-            )}
-          </select>
-          {error && <p className="error-message">{error}</p>}
+          <div className="filter-group">
+            <label htmlFor="location">
+              <FaSearch className="filter-icon" />
+              Location
+            </label>
+            <select
+              id="location"
+              value={selectedLocation}
+              onChange={(e) => setSelectedLocation(e.target.value)}
+              disabled={loading}
+              className="filter-select"
+            >
+              <option value="all">All Locations</option>
+              {loading ? (
+                <option value="">Loading locations...</option>
+              ) : error ? (
+                <option value="">Error loading locations</option>
+              ) : (
+                locations.map(location => (
+                  <option key={location.id} value={location.name.toLowerCase()}>{location.name}</option>
+                ))
+              )}
+            </select>
+          </div>
         </div>
+        {error && <p className="error-message">{error}</p>}
       </div>
 
       <div className="accommodation-grid">
         {loading ? (
-          <p>Loading properties...</p>
+          <div className="loading-container">
+            <div className="loading-spinner"></div>
+            <p>Loading properties...</p>
+          </div>
         ) : error ? (
-          <p className="error-message">{error}</p>
+          <div className="error-container">
+            <p className="error-message">{error}</p>
+          </div>
         ) : filteredProperties.length === 0 ? (
-          <p>No properties found matching your criteria.</p>
+          <div className="no-results">
+            <p>No properties found matching your criteria.</p>
+            <button 
+              className="reset-filters-btn"
+              onClick={() => {
+                setSelectedCategory('all');
+                setSelectedLocation('all');
+              }}
+            >
+              Reset Filters
+            </button>
+          </div>
         ) : (
           filteredProperties.map(property => (
-            // <div key={property.id} className="accommodation-card">
-            //   <div className="card-image">
-            //     <img src={property.image || "https://via.placeholder.com/300x200"} alt={property.name} />
-            //   </div>
-            //   <div className="card-content">
-            //     <h3>{property.name}</h3>
-            //     <p className="location">{property.location?.name || 'Location not specified'}</p>
-            //     <p className="price">₹{property.price || 0}/month</p>
-            //     <div className="rating">
-            //       {Array.from({ length: 5 }).map((_, i) => (
-            //         <span key={i} className={i < Math.floor(property.rating || 0) ? 'filled' : 'empty'}>★</span>
-            //       ))}
-            //       <span className="rating-value">{property.rating || 0}</span>
-            //     </div>
-            //     <div className="amenities">
-            //       {property.amenities && property.amenities.map((amenity, index) => (
-            //         <span key={index} className="amenity-tag">{amenity}</span>
-            //       ))}
-            //     </div>
-            //     <p className="description">{property.description || 'No description available'}</p>
-            //   </div>
-            // </div>
             <PropertyCard item={property} key={property.id} />
           ))
         )}
