@@ -7,11 +7,19 @@
 .main-container {
   display: flex;
   flex-direction: row; /* Default to row layout */
+  position: relative;
 }
 
 main {
   padding: 10px;
   flex: 1; /* Allow main content to take available space */
+  margin-left: 45px; /* Match the collapsed sidebar width */
+  transition: margin-left 0.1s ease;
+}
+
+/* Add this new class for when sidebar is open */
+main.sidebar-open {
+  margin-left: 200px; /* Match the expanded sidebar width */
 }
 
 .title {
@@ -25,7 +33,10 @@ main {
   background: #fab440;
   color: #07143f;
   height: 100vh;
-  overflow-y: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: hidden;
   transition: width 0.1s ease; /* Smooth transition for width changes */
 }
 
