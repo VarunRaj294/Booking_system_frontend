@@ -347,7 +347,7 @@ const SideBar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  <b> PG Haven</b>
+                  <b> PG WALA </b>
                 </motion.h1>
               )}
             </AnimatePresence>

@@ -86,7 +86,7 @@ const HomePage = () => {
             <div className="col-md-4">
               <div className="card p-3">
                 <p>
-                  "PG Management made it incredibly easy to find a room that
+                  "PG WALA made it incredibly easy to find a room that
                   fits my budget and location preferences!"
                 </p>
                 <p className="text-end">

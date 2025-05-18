@@ -7,7 +7,7 @@ const AboutUsPage = () => {
         </div>
         <div className="col-12 col-md-10 offset-md-1">
           <p className="lead text-center">
-            Welcome to <strong>PG Management</strong>, your go-to platform for
+            Welcome to <strong>PG WALA</strong>, your go-to platform for
             finding the perfect accommodation. Whether you're a property owner
             or a guest looking for a place to stay, we make the entire process
             seamless and hassle-free. Our platform allows multiple property
@@ -16,7 +16,7 @@ const AboutUsPage = () => {
             requirements.
           </p>
           <p className="lead text-center">
-            At <strong>PG Management</strong>, we aim to bridge the gap between
+            At <strong>PG WALA</strong>, we aim to bridge the gap between
             property owners and guests by offering a secure and user-friendly
             experience. Our advanced booking system ensures that guests can
             reserve rooms with just a few clicks, while property owners have the
