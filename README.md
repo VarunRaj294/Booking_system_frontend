@@ -1,1 +1,1 @@
-# PG MANAGMENT SYSTEM using React JS
+# PG BOOKING SYSTEM using React JS
